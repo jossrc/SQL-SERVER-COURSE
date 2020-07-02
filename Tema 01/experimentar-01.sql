@@ -52,3 +52,13 @@ MODIFY FILE(
   MAXSIZE = 200MB
 )
 GO
+
+-- 07. Modificar de la base de datos creada, el archivo Claro_Log2 para cambiar el factor
+-- de crecimiento a 25%.
+
+ALTER DATABASE BDClaro
+MODIFY FILE(
+  NAME = CLaro_Log2,
+  FILEGROWTH = 25%
+)
+GO
