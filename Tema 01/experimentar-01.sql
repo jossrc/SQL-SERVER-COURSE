@@ -68,3 +68,12 @@ GO
 ALTER DATABASE BDClaro
   ADD FILEGROUP FGComercial
 GO
+
+-- 09. Modificar la base de datos para adicionar un datafile al filegroup creado anteriormente.
+
+ALTER DATABASE BDClaro
+ADD FILE (
+  NAME = Claro_Data_Comercial,
+  FILENAME = 'C:\DataClaro\Claro_Data_Comercial.MDF'
+) TO FILEGROUP FGComercial
+GO
