@@ -42,3 +42,13 @@ ADD LOG FILE (
   FILEGROWTH = 10MB
 )
 GO
+
+-- 06. Modificar de la base de datos creada, el archivo Claro_DataN1 para ampliar el
+-- tamaño máximo a 200MB
+
+ALTER DATABASE BDClaro
+MODIFY FILE(
+  NAME = Claro_DataN1,
+  MAXSIZE = 200MB
+)
+GO
