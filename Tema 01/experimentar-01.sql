@@ -62,3 +62,9 @@ MODIFY FILE(
   FILEGROWTH = 25%
 )
 GO
+
+-- 08. Modificar la base de datos para crear el filegroup FGComercial
+
+ALTER DATABASE BDClaro
+  ADD FILEGROUP FGComercial
+GO
