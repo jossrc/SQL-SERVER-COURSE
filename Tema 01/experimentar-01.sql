@@ -30,3 +30,15 @@ ADD FILE(
   FILEGROWTH = 5MB
 )
 GO
+
+-- 05. Modificar la base de datos para adicionar un LogFile
+
+ALTER DATABASE BDClaro
+ADD LOG FILE (
+  NAME = Claro_Log2,
+  FILENAME = 'C:\LogClaro\Claro_Log2.LDF',
+  SIZE = 20MB,
+  MAXSIZE = 150MB,
+  FILEGROWTH = 10MB
+)
+GO
