@@ -13,3 +13,8 @@ FROM sys.databases;
 
 CREATE DATABASE BDClaro
 GO
+
+-- 03. Visualice la estructura de la base de datos anterior
+
+SP_HELPDB BDClaro
+GO
