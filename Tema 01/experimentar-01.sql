@@ -6,9 +6,6 @@ GO
 SELECT * FROM sys.databases
 GO
 
-SELECT name, user_access_desc, is_read_only, state_desc, recovery_model_desc  
-FROM sys.databases;
-
 -- 02. Crear una base de datos con valores predeterminados llamada BDClaro
 
 CREATE DATABASE BDClaro
@@ -17,4 +14,19 @@ GO
 -- 03. Visualice la estructura de la base de datos anterior
 
 SP_HELPDB BDClaro
+GO
+
+-- 04. Modificar la base de datos anterior para adicionar un DataFile
+
+USE BDClaro
+GO
+
+ALTER DATABASE BDClaro
+ADD FILE(
+  NAME = Claro_DataN1,
+  FILENAME = 'C:\DataClaro\Claro_DataN1.NDF',
+  SIZE = 10MB,
+  MAXSIZE = 50MB,
+  FILEGROWTH = 5MB
+)
 GO
