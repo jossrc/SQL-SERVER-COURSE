@@ -53,3 +53,13 @@ CREATE TYPE TCLIENTE AS TABLE (
   EMAIL_CLI	  VARCHAR(100)	NOT NULL
 )
 GO
+
+-- UTILIZANDO TIPO DATO TABLA
+
+DECLARE @V_TablaCli TCLIENTE -- Se crea variable
+INSERT @V_TablaCli VALUES -- Se inserta datos a la variable
+  ('Juan', 'Alva', 'abc@yahoo.com'),
+  ('Luis', 'Rios', 'lrios@gmail.com'),
+  ('Carlos','Perez','cp@hotmail.com')
+SELECT * FROM @V_TablaCli -- Visualizar información
+GO
