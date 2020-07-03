@@ -1,3 +1,6 @@
+USE master
+GO
+
 /*
 
 En la empresa Recobra, se decidió implementar una Tabla
@@ -9,6 +12,21 @@ análisis comparativo.
 
 -- 1. Crear los filegroups.
 
+ALTER DATABASE BD_RECOBRA
+  ADD FILEGROUP FG_TRIMESTRE1
+GO
+
+ALTER DATABASE BD_RECOBRA
+  ADD FILEGROUP FG_TRIMESTRE2
+GO
+
+ALTER DATABASE BD_RECOBRA
+  ADD FILEGROUP FG_TRIMESTRE3
+GO
+
+ALTER DATABASE BD_RECOBRA
+  ADD FILEGROUP FG_TRIMESTRE4
+GO
 
 
 -- 2. Adicionar los datafiles.
