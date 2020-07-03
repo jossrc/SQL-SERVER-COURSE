@@ -1,3 +1,6 @@
+USE BD_RECOBRA
+GO
+
 /*
 	EJERCICIO 1
 En la empresa Recobra, se decidió implementar schemas para
@@ -6,9 +9,14 @@ RRHH y FINANZAS.
 
 */
 
+CREATE SCHEMA VENTAS
+GO
 
+CREATE SCHEMA RRHH
+GO
 
-
+CREATE SCHEMA FINANZAS
+GO
 
 /*
 	EJERCICIO 2
