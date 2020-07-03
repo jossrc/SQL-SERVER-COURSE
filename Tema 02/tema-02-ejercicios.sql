@@ -27,3 +27,12 @@ implementará tipos de datos definidos por el usuario que serán:
   + TTiempo basado en date.
 
 */
+
+CREATE TYPE TCadena FROM VARCHAR(50) NOT NULL
+GO
+
+CREATE TYPE TMoneda FROM SMALLMONEY NOT NULL
+GO
+
+CREATE TYPE TTiempo FROM DATE NOT NULL
+GO
