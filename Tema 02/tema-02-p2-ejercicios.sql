@@ -29,6 +29,7 @@ ALTER DATABASE BD_RECOBRA
 GO
 
 
+
 -- 2. Adicionar los datafiles.
 
 
