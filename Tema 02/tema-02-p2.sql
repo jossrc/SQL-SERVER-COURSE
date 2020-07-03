@@ -1,0 +1,5 @@
+USE BD_TRAVEL
+GO
+
+SELECT * FROM sys.schemas
+GO
