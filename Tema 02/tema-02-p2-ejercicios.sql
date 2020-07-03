@@ -1,3 +1,6 @@
+USE master
+GO
+
 /*
 
 En la empresa Recobra, se decidió implementar una Tabla
@@ -8,6 +11,7 @@ análisis comparativo.
 */
 
 -- 1. Crear los filegroups.
+
 
 
 
