@@ -35,8 +35,20 @@ GO
       utilizando el comando CREATE TYPE
 */
 
+CREATE TYPE UDTIdNum FROM SMALLINT NOT NULL
+GO
 
+CREATE TYPE UDTIdCad FROM CHAR(8) NOT NULL
+GO
 
+CREATE TYPE UDTCad FROM VARCHAR(50) NOT NULL
+GO
+
+CREATE TYPE UDTTiempo FROM DATETIME NOT NULL
+GO
+
+CREATE TYPE UDTMonto FROM SMALLMONEY NOT NULL
+GO
 
 /*
   04. Crear las siguientes tablas, en los esquemas indicados y utilizando los tipos de
