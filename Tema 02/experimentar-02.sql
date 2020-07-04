@@ -1,10 +1,17 @@
+USE master
+GO
 
 /*
   01. Cree la base de datos BDArcor con valores de propiedades predeterminadas,
       validando su existencia, eliminándola si existiera.
 */
 
+IF DB_ID('BD_ARCOR') IS NOT NULL
+	DROP DATABASE BD_ARCOR
+GO
 
+CREATE DATABASE BD_ARCOR
+GO
 
 -- 02. Abrir la base de datos y crear los siguientes esquemas:
 
