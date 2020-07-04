@@ -124,8 +124,13 @@ GO
       Left
 */
 
+USE BD_ARCOR
+GO
 
-
+CREATE PARTITION FUNCTION FNP_NUMEROS(INT)
+AS RANGE LEFT
+  FOR VALUES (1000,2000)
+GO
 
 -- 08. Crear un esquema de partición usando la función de partición creada
 
