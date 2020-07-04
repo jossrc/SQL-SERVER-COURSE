@@ -71,7 +71,10 @@ GO
 
 -- 4. Crear el esquema de Partición.
 
-
+CREATE PARTITION SCHEME SCH_TRIMESTRE
+AS PARTITION FNP_TRIMESTRE
+  TO ('FG_TRIMESTRE1','FG_TRIMESTRE2','FG_TRIMESTRE3','FG_TRIMESTRE4')
+GO
 
 -- 5. Crear la tabla Particionada
 
