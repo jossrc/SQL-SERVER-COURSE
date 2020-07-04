@@ -61,7 +61,13 @@ GO
 
 -- 3. Crear la Función de Partición.
 
+USE BD_RECOBRA
+GO
 
+CREATE PARTITION FUNCTION FNP_TRIMESTRE(TINYINT)
+AS RANGE LEFT
+  FOR VALUES (3,6,9)
+GO
 
 -- 4. Crear el esquema de Partición.
 
