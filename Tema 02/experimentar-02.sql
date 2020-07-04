@@ -98,7 +98,26 @@ GO
       con valores predeterminados.
 */
 
+ALTER DATABASE BD_ARCOR
+ADD FILE (
+  NAME = ARCOR_DATA1,
+  FILENAME = 'C:\ArcorData\ARCOR_DATA1.NDF'
+) TO FILEGROUP FG1000
+GO
 
+ALTER DATABASE BD_ARCOR
+ADD FILE (
+  NAME = ARCOR_DATA2,
+  FILENAME = 'C:\ArcorData\ARCOR_DATA2.NDF'
+) TO FILEGROUP FG2000
+GO
+
+ALTER DATABASE BD_ARCOR
+ADD FILE (
+  NAME = ARCOR_DATA3,
+  FILENAME = 'C:\ArcorData\ARCOR_DATA3.NDF'
+) TO FILEGROUP FG3000
+GO
 
 /*
   07. Abrir la base de datos BDArcor y crear una función de partición utilizando Range
