@@ -134,7 +134,9 @@ GO
 
 -- 08. Crear un esquema de partición usando la función de partición creada
 
-
-
+CREATE PARTITION SCHEME SCP_NUMEROS
+AS PARTITION FNP_NUMEROS
+ TO ('FG1000','FG2000','FG3000')
+GO
 
 -- 09. Crear una tabla particionada por el campo NRO_FACT
