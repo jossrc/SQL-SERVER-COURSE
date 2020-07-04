@@ -55,14 +55,42 @@ GO
       datos creados previamente
 */
 
+CREATE TABLE SCH_ACAD.TB_DOCENTE (
+  COD_DOCE   UDTIdCad   NOT NULL,
+  NOM_DOCE   UDTCad     NOT NULL,
+  APE_DOCE   UDTCad     NOT NULL,
+  FNA_DOCE   UDTTiempo  NOT NULL,
+  SUE_DOCE   UDTMonto   NOT NULL
+)
+GO
 
+CREATE TABLE SCH_ADMIN.TB_ORDEN (
+  NRO_ORDEN      UDTIdNum   NOT NULL,
+  FEC_ORDEN      UDTTiempo  NOT NULL,
+  FEC_PAG_ORDEN  UDTTiempo  NOT NULL,
+  MNT_ORDEN      UDTMonto   NOT NULL
+)
+GO
 
 /*
   05. Abrir la BD Master y modificar la base de datos BDArcor para adicionar 03
       filegroups: FG1000, FG2000 y FG3000
 */
 
+USE master
+GO
 
+ALTER DATABASE BD_ARCOR
+  ADD FILEGROUP FG1000
+GO
+
+ALTER DATABASE BD_ARCOR
+  ADD FILEGROUP FG2000
+GO
+
+ALTER DATABASE BD_ARCOR
+  ADD FILEGROUP FG3000
+GO
 
 /*
   06. Modifique la base de datos BDArcor para adicionar un DataFile en cada filegroup
