@@ -15,7 +15,20 @@ GO
 
 -- 02. Abrir la base de datos y crear los siguientes esquemas:
 
+SP_HELPDB BD_ARCOR
+GO
 
+USE BD_ARCOR
+GO
+
+CREATE SCHEMA SCH_ACAD
+GO
+
+CREATE SCHEMA SCH_ADMIN
+GO
+
+CREATE SCHEMA SCH_FINANCE
+GO
 
 /*
   03. En la base de datos, crear los siguientes tipos de datos definidos por el usuario
