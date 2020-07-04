@@ -78,3 +78,10 @@ GO
 
 -- 5. Crear la tabla Particionada
 
+CREATE TABLE dbo.TB_SOLICITUD (
+  NRO_SOL   INT          NOT NULL,
+  TIT_SOL   VARCHAR(50)  NOT NULL,
+  FECH_SOL  DATE         NOT NULL,
+  TRIM_SOL  TINYINT      NOT NULL
+) ON SCH_TRIMESTRE(TRIM_SOL)
+GO
