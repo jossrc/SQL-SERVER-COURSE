@@ -138,3 +138,14 @@ CREATE INDEX IDX_APE_MEDI
 ON SERVICIO.TBMedico (apMed)
   INCLUDE (espMed)
 GO
+
+
+-- Visualizar índices
+
+SELECT NAME [ÍNDICE],
+       TYPE_DESC [TIPO]
+FROM sys.indexes
+WHERE NAME LIKE 'IDX%' OR
+      NAME LIKE 'UQ%'  OR
+      NAME LIKE 'PK%'
+GO
