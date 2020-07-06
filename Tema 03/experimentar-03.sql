@@ -6,7 +6,12 @@ GO
       validando su existencia, eliminándola si existiera.
 */
 
+IF DB_ID('BDClinica') IS NOT NULL
+   DROP DATABASE BDClinica
+GO
 
+CREATE DATABASE BDClinica
+GO
 
 -- 02. Abrir la base de datos y crear los siguientes esquemas
 
