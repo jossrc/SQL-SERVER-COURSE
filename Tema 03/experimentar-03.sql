@@ -125,3 +125,16 @@ GO
         ordenado de forma descendente para ambos campos.
      c. Cree un Índice normal (apellido del médico), incluir el campo especialidad.
 */
+
+CREATE CLUSTERED INDEX IDX_FECH_ID_PAC
+ON SERVICIO.TBReceta (fecRec, idPac)
+GO
+
+CREATE NONCLUSTERED INDEX IDX_NOM_APE_PAC
+ON USUARIO.TBPaciente (nomPac, apPac)
+GO
+
+CREATE INDEX IDX_APE_MEDI
+ON SERVICIO.TBMedico (apMed)
+  INCLUDE (espMed)
+GO
