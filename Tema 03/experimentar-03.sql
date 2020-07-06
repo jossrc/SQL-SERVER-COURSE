@@ -63,6 +63,59 @@ GO
 
 -- 04. Crear las siguientes restricciones
 
+ALTER TABLE SERVICIO.TBMedico
+  ADD
+  CONSTRAINT PK_idMed 
+    PRIMARY KEY NONCLUSTERED (idMed),
+  CONSTRAINT UQ_nomMed_apMed
+    UNIQUE (nomMed, apMed),
+  CONSTRAINT CK_espMed CHECK
+    (espMed IN ('Pediatría','Ginecología','Cardiología') ),
+  CONSTRAINT CK_colMed CHECK
+    (colMed LIKE '%2' OR
+	 colMed LIKE '%4' OR
+	 colMed LIKE '%6' OR
+	 colMed LIKE '%8')
+GO
+
+ALTER TABLE USUARIO.TBPaciente
+  ADD
+  CONSTRAINT PK_idPac 
+    PRIMARY KEY NONCLUSTERED (idPac),
+  CONSTRAINT CK_fnaPac  CHECK
+    ( YEAR(fnaPac) >= 1950 ),
+  CONSTRAINT CK_fonoPac CHECK
+    ( fonoPac LIKE '9%' OR
+	  fonoPac LIKE '5%' OR
+	  fonoPac LIKE '4%' OR
+	  fonoPac LIKE '3%' OR
+	  fonoPac LIKE '2%')
+GO
+
+ALTER TABLE SERVICIO.TBReceta
+  ADD
+  CONSTRAINT PK_numRec
+    PRIMARY KEY NONCLUSTERED (numRec),
+  CONSTRAINT DF_fecRec
+    DEFAULT GETDATE() FOR fecRec ,
+  CONSTRAINT FK_idPac FOREIGN KEY
+    (idPac) REFERENCES USUARIO.TBPaciente
+	ON UPDATE CASCADE,
+  CONSTRAINT FK_idMed FOREIGN KEY
+    (idMed) REFERENCES SERVICIO.TBMedico
+	ON DELETE CASCADE
+GO
+
+ALTER TABLE SERVICIO.TBDetalleReceta
+  ADD
+  CONSTRAINT PK_numRec_codMedicina
+    PRIMARY KEY NONCLUSTERED (numRec, codMedicina),
+  CONSTRAINT CK_Canti CHECK
+    (canti > 0),
+  CONSTRAINT FK_numRec FOREIGN KEY
+    (numRec) REFERENCES SERVICIO.TBReceta
+	ON DELETE CASCADE
+GO
 
 /*
    05. Crear los siguientes índices:
