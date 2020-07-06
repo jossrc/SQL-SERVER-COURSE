@@ -163,3 +163,11 @@ GO
 ALTER TABLE MKT.PRODUCTO
   CHECK CONSTRAINT CK_COD_PRO
 GO
+
+
+/*  VISUALIZAR RESTRICCIONES CREADAS  */
+
+SELECT * FROM sys.check_constraints   -- CHECK
+SELECT * FROM sys.key_constraints     -- KEY - UQ
+SELECT * FROM sys.default_constraints -- DEFAULT
+GO
