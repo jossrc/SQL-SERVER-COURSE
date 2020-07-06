@@ -15,7 +15,14 @@ GO
 
 -- 02. Abrir la base de datos y crear los siguientes esquemas
 
+USE BDClinica
+GO
 
+CREATE SCHEMA USUARIO
+GO
+
+CREATE SCHEMA SERVICIO
+GO
 
 -- 03. Crear las siguientes tablas, en los esquemas indicados
 
