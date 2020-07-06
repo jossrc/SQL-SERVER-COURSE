@@ -264,5 +264,5 @@ SELECT NAME [ÍNDICE],
 FROM sys.indexes
 WHERE  NAME LIKE 'IDX%' OR
        NAME LIKE 'UQ%'  OR
-	   NAME LIKE 'PK%'
+       NAME LIKE 'PK%'
 GO
