@@ -171,3 +171,9 @@ SELECT * FROM sys.check_constraints   -- CHECK
 SELECT * FROM sys.key_constraints     -- KEY - UQ
 SELECT * FROM sys.default_constraints -- DEFAULT
 GO
+
+-- ELIMINAR RESTRICCIÓN
+
+ALTER TABLE MKT.PRODUCTO
+  DROP CONSTRAINT CK_COD_PRO
+GO
