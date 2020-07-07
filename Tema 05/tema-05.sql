@@ -34,3 +34,21 @@ GO
 
 SELECT * FROM Ventas.clientes
 GO
+
+-- ELIMINAR REGISTROS - TRUNCATE
+
+CREATE TABLE dbo.Consumer (
+  ID_CONS         INT IDENTITY,
+  FULLNAME_CONST  VARCHAR(50)
+)
+GO
+
+INSERT dbo.Consumer
+  SELECT NomCliente FROM Ventas.clientes
+GO
+
+SELECT * FROM dbo.Consumer
+GO
+
+TRUNCATE TABLE dbo.Consumer
+GO
