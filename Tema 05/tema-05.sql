@@ -101,3 +101,19 @@ WHERE IdProveedor IN (
 	WHERE NombrePais = 'Colombia'
   )
 )
+
+-- MERGE
+
+BEGIN
+  DECLARE @v_IdPais CHAR(3), @v_NomPais VARCHAR(100)
+  SET @v_IdPais = '009'
+  SET @v_NomPais = 'Brasil'
+    MERGE Ventas.Paises AS TARGET
+	USING (SELECT @v_IdPais, @v_Nompais) AS SOURCE (IdPais, NombrePais)
+	ON (SOURCE.IdPais = TARGET.IdPais)
+	WHEN MATCHED THEN 
+	  UPDATE SET TARGET.NombrePais = SOURCE.NombrePais
+    WHEN NOT MATCHED THEN
+	  INSERT VALUES (SOURCE.IdPais, SOURCE.NombrePais);
+END
+GO
