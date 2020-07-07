@@ -25,3 +25,12 @@ GO
 
 SELECT * FROM Ventas.clientes
 GO
+
+-- DELETE
+
+DELETE FROM Ventas.clientes
+WHERE IdCliente LIKE 'C0%'
+GO
+
+SELECT * FROM Ventas.clientes
+GO
