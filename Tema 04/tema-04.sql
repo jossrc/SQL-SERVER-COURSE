@@ -15,3 +15,13 @@ GO
 
 USE Northwind
 GO
+
+-- INGRESANDO DATOS A UNA TABLA DESDE OTRA TABLA DE OTRA BD
+
+USE BD_TRAVEL
+GO
+
+INSERT logistic.TBProveedor
+SELECT CompanyName, ContactName, City, Country
+FROM Northwind.dbo.Suppliers
+GO
