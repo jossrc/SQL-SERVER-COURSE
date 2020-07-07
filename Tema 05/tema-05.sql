@@ -52,3 +52,17 @@ GO
 
 TRUNCATE TABLE dbo.Consumer
 GO
+
+-- UPDATE
+
+UPDATE Ventas.clientes
+SET  NomCliente = 'Bembos Burger',
+     DirCliente = 'Las Begonias 444',
+     idpais = '001',
+     fonoCliente = '(51)12832474'
+WHERE IdCliente = 'CACTU'
+GO
+
+SELECT * FROM Ventas.clientes
+  WHERE IdCliente = 'CACTU'
+GO
