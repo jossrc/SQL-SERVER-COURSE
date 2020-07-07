@@ -66,3 +66,38 @@ GO
 SELECT * FROM Ventas.clientes
   WHERE IdCliente = 'CACTU'
 GO
+
+/*
+   EJEMPLO
+    Actualizar el precio de los productos incrementando
+    10%, solo si han sido suministrados por proveedores de Colombia.
+*/
+
+SELECT Compras.productos.IdProducto, Compras.productos.NomProducto, Compras.productos.PrecioUnidad FROM Compras.productos
+WHERE IdProveedor IN (
+  SELECT IdProveedor FROM Compras.proveedores
+  WHERE idpais IN (
+    SELECT idpais FROM Ventas.paises
+	WHERE NombrePais='Colombia'
+  )
+)
+
+-- OR
+
+SELECT Compras.productos.IdProducto, Compras.productos.NomProducto, Compras.productos.PrecioUnidad FROM Compras.productos
+INNER JOIN Compras.proveedores
+ON Compras.productos.IdProveedor = Compras.proveedores.IdProveedor
+INNER JOIN Ventas.paises
+ON Compras.proveedores.idpais = Ventas.paises.Idpais
+  WHERE NombrePais = 'Colombia'
+GO
+
+UPDATE Compras.productos
+SET PrecioUnidad = PrecioUnidad * 1.10
+WHERE IdProveedor IN (
+  SELECT IdProveedor FROM Compras.proveedores
+  WHERE idpais IN (
+    SELECT idpais FROM Ventas.paises
+	WHERE NombrePais = 'Colombia'
+  )
+)
