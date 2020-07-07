@@ -25,3 +25,10 @@ INSERT logistic.TBProveedor
 SELECT CompanyName, ContactName, City, Country
 FROM Northwind.dbo.Suppliers
 GO
+
+-- INGRESANDO REGISTROS DESDE UN FLAT FILE
+
+BULK INSERT Sales.TBCliente
+FROM 'C:\Backup\DataAS400Clientes.TXT'
+  WITH (ROWTERMINATOR= '\n', FIELDTERMINATOR=',')
+GO
