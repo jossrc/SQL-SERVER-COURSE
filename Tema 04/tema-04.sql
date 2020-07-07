@@ -32,3 +32,23 @@ BULK INSERT Sales.TBCliente
 FROM 'C:\Backup\DataAS400Clientes.TXT'
   WITH (ROWTERMINATOR= '\n', FIELDTERMINATOR=',')
 GO
+
+-- INGRESANDO REGISTROS DESDE UN EXCEL FILE
+
+SP_CONFIGURE 'Show Advanced Options', 1;
+RECONFIGURE;
+GO
+
+SP_CONFIGURE 'Ad Hoc Distributed Queries', 1;
+RECONFIGURE;
+GO
+
+INSERT Sales.TBCliente
+SELECT * FROM OPENROWSET('Microsoft.Jet.OLEDB.4.0',
+  'Excel 8.0;Database=C:\Backup\Datos.xls', [Hoja1$])
+GO
+
+/*
+   En nuevas versiones de SQL SERVER Y EXCEL se utiliza el proveedor
+   Microsoft.ACE.OLEDB.12.0
+*/
