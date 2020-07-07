@@ -15,3 +15,13 @@ GO
 
 SELECT * FROM Compras.categorias
 GO
+
+-- BULK INSERT
+
+BULK INSERT Ventas.Clientes
+FROM 'C:\Clientes.txt'
+WITH (FIELDTERMINATOR=',')
+GO
+
+SELECT * FROM Ventas.clientes
+GO
