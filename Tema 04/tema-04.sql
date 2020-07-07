@@ -10,3 +10,8 @@ GO
 
 SP_HELP 'MKT.CLIENTE' 
 GO
+
+-- USANDO BD NORTHWIND
+
+USE Northwind
+GO
