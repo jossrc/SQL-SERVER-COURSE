@@ -111,8 +111,20 @@ GO
        código postal L-01, ampliando la fecha fin de alquiler en tres meses.
 */
 
+SELECT * FROM Comercial.DETALLECONTRATO
+WHERE COD_EDIF IN (
+ SELECT COD_EDIF FROM Arquitectura.EDIFICIOS
+ WHERE CODPOSTAL_EDIF = 'L-01'
+)
+GO
 
-
+UPDATE Comercial.DETALLECONTRATO
+SET FEC_FIN_ALQ = DATEADD(MM,3,FEC_FIN_ALQ)
+WHERE COD_EDIF IN (
+ SELECT COD_EDIF FROM Arquitectura.EDIFICIOS
+ WHERE CODPOSTAL_EDIF = 'L-01'
+)
+GO
 
 /*
    09. Actualizar los contratos retrasando 2 semanas las fechas de firma de contrato
