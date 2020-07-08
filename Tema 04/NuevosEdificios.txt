@@ -1,0 +1,28 @@
+EDF008,Pradera,Zepita 123,L-01,450,435,Ver GoogleMap,EST006
+EDF009,Oh Sol,Malecón Checa 357,L-14,178,163,Ver GoogleMap,EST005
+EDF010,Nogal,Josè Pizarro,L-21,246,231,Ver GoogleMap,EST005
+EDF011,Babilonia,Parinacochas,L-01,450,435,Ver GoogleMap,EST008
+EDF012,Viviana,Lucanas,L-14,178,163,Ver GoogleMap,EST005
+EDF013,Granada,Torre Tagle,L-21,246,231,Ver GoogleMap,EST005
+EDF014,Estación,Planicie,L-01,450,435,Ver GoogleMap,EST006
+EDF015,Hawai,Loreto,L-14,178,163,Ver GoogleMap,EST005
+EDF016,Miverva,Los Capulíes,L-10,250,235,Ver GoogleMap,EST005
+EDF017,Los Condes,Av. San Agustín,L-04,247,232,Ver GoogleMap,EST008
+EDF018,Renovación,Jr. Madre de Dios,L-11,175,160,Ver GoogleMap,EST005
+EDF019,San Mateo,Luringancho,L-21,178,163,Ver GoogleMap,EST005
+EDF020,El Epílogo,Independencia,L-15,198,183,Ver GoogleMap,EST006
+EDF021,Res. Urdanivia,Av. Salaverry,L-06,210,195,Ver GoogleMap,EST005
+EDF022,Santo Patrono,Jr. Lucanas,L-14,200,185,Ver GoogleMap,EST005
+EDF023,Las Rocas,Av. Manco Capac,L-18,148,133,Ver GoogleMap,EST008
+EDF024,Los Arbolitos,Calle Plutón,L-19,201,186,Ver GoogleMap,EST005
+EDF025,Madrid,Antofagasta,L-17,115,100,Ver GoogleMap,EST005
+EDF026,Turín,Orellana,L-15,178,163,Ver GoogleMap,EST006
+EDF027,Francia,Yunque,L-06,180,165,Ver GoogleMap,EST005
+EDF028,Res. Infante,Av. César Vallejo,L-01,170,155,Ver GoogleMap,EST005
+EDF029,Las Lomas,Francisco De Zela,L-02,190,175,Ver GoogleMap,EST008
+EDF030,La Colina,Morales Duarez,L-08,205,190,Ver GoogleMap,EST005
+EDF031,El Insurgente,Martín Dulanto,L-07,204,189,Ver GoogleMap,EST005
+EDF032,Martinica,José Ramón Pizarro,L-09,201,186,Ver GoogleMap,EST006
+EDF033,Universitario,Iquique,L-14,179,164,Ver GoogleMap,EST005
+EDF034,El Imperio,Av. Arica,L-15,187,172,Ver GoogleMap,EST005
+EDF035,Terranova,Daniel Hernandez,L-16,147,132,Ver GoogleMap,EST008
