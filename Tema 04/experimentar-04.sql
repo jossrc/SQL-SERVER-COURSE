@@ -131,12 +131,39 @@ GO
        perteneciente a los propietarios cuyo apellido inicie con consonante.
 */
 
+SELECT * FROM Comercial.CONTRATO
+WHERE PROP_COD_USUA IN (
+  SELECT COD_USUA FROM Comercial.PROPIETARIO
+  WHERE COD_USUA IN (
+    SELECT COD_USUA FROM Comercial.USUARIO
+	WHERE APEPATER_USUA NOT LIKE '[AEIOUaeiou]%' AND 
+          APEMATER_USUA NOT LIKE '[AEIOUaeiou]%'
+  )
+)
+GO
 
-
+UPDATE Comercial.CONTRATO
+SET FEC_FIRMA = DATEADD(WEEK,2, FEC_FIRMA)
+WHERE PROP_COD_USUA IN (
+  SELECT COD_USUA FROM Comercial.PROPIETARIO
+  WHERE COD_USUA IN (
+    SELECT COD_USUA FROM Comercial.USUARIO
+	WHERE APEPATER_USUA NOT LIKE '[AEIOUaeiou]%' AND 
+          APEMATER_USUA NOT LIKE '[AEIOUaeiou]%'
+  )
+)
+GO
 
 -- 10. Cree una tabla TBContratosVencidos
 
+SELECT * INTO TBContratosVencidos
+FROM Comercial.CONTRATO
+WHERE COD_CONT = 'YYY999'
+GO
 
+SELECT * FROM Comercial.CONTRATO
+SELECT * FROM dbo.TBContratosVencidos
+GO
 
 /*
    11. Utilizando las tablas CONTRATO y TBCONTRATOSVENCIDOS realice las
