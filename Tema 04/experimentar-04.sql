@@ -87,7 +87,10 @@ GO
        encuentra el archivo DetalleContrato.TXT)
 */
 
-
+BULK INSERT Comercial.DETALLECONTRATO
+FROM 'C:\DetalleContratos.txt'
+WITH (FIRSTROW=2, FIELDTERMINATOR=',', ROWTERMINATOR='\n')
+GO
 
 /*
    07. Actualizar el precio de alquiler de los departamentos ubicados en el primer piso,
