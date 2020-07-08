@@ -76,8 +76,10 @@ GO
        Experimentar se encuentra el archivo Contratos.TXT)
 */
 
-
-
+BULK INSERT Comercial.CONTRATO
+FROM 'C:\CONTRATOS.txt'
+WITH (FIRSTROW = 1, FIELDTERMINATOR = ';', ROWTERMINATOR = '\n')
+GO
 
 /*
    06. Así mismo, tiene una lista con todos los detalles de contrato, deberá ingresar a la
