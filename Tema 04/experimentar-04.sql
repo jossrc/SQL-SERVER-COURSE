@@ -97,8 +97,14 @@ GO
        incrementando en 25%.
 */
 
+SELECT COD_EDIF, COD_DEP, PISO_DEP, PRECIO_ALQXMES_DEP AS [PRECIO DE ALQUILER] FROM Arquitectura.DEPARTAMENTOS
+WHERE PISO_DEP=1
+GO
 
-
+UPDATE Arquitectura.DEPARTAMENTOS
+  SET  PRECIO_ALQXMES_DEP *= 1.25
+WHERE PISO_DEP = 1
+GO
 
 /*
    08. Actualizar los detalles de contrato perteneciente a los edificios ubicados en el
