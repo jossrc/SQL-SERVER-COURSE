@@ -1,8 +1,26 @@
+USE BDInmobiliaria
+GO
 
 -- 01. Ingrese los siguientes registros:
 
+INSERT INTO Comercial.ESTADO (COD_EST, DESC_EST) VALUES
+  ('EST001','OCUPADO'),
+  ('EST002','DESOCUPADO'),
+  ('EST003','VIGENTE'),
+  ('EST004','VENCIDO'),
+  ('EST005','HABILITADO'),
+  ('EST006','DESHABILITADO')
+GO
 
-
+INSERT INTO Arquitectura.EDIFICIOS (COD_EDIF, NOM_EDIF,DIRECC_EDIF,CODPOSTAL_EDIF,AREA_TOTAL_EDIF,COD_EST) VALUES
+  ('EDF001','La Posadera','Jr. Lima 123','L-01', 450 ,'EST005'),
+  ('EDF002','El Corralito','Av. Saenz Peña 357','L-14',178 ,'EST006'),
+  ('EDF003','Los Alamos','Av. Del Río 666','L-21',246 ,'EST005'),
+  ('EDF004','El Aguajal','Jr. Urdanivia 875','L-21',285 ,'EST006'),
+  ('EDF005','Los Cupisnique','Av. La Mar 966','L-14', 178,'EST005'),
+  ('EDF006','El Indice','Av. Las Dromelias 777','L-01', 246,'EST006'),
+  ('EDF007','Los Guerreros Moche','Av. De los acá','L-17', 246,'EST006')
+GO
 
 /*
    02. La Inmobiliaria acaba de recibir una lista de Edificios en Flat File, deberá ingresar
