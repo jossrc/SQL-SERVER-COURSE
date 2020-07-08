@@ -54,8 +54,21 @@ GO
 
 */
 
+INSERT INTO Comercial.USUARIO
+  SELECT * FROM BDAdmision.dbo.USUARIO
+GO
 
+INSERT INTO Comercial.INQUILINO
+  SELECT * FROM BDAdmision.dbo.INQUILINO
+GO
 
+INSERT INTO Comercial.PROPIETARIO
+  SELECT * FROM BDAdmision.dbo.PROPIETARIO
+GO
+
+INSERT INTO Comercial.FAMILIARES
+  SELECT * FROM BDAdmision.dbo.FAMILIARES
+GO
 
 /*
    05. La Inmobiliaria acaba de recibir del departamento legal una lista de contratos en
