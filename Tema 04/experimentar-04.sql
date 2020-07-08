@@ -41,8 +41,12 @@ GO
        Base de Datos BDCONSTRUCCION.
 */
 
+INSERT INTO Arquitectura.DEPARTAMENTOS
+  SELECT * FROM BDConstruccion.dbo.TBDEPA
+GO
 
-
+SELECT * FROM Arquitectura.DEPARTAMENTOS
+GO
 
 /*
    04. Inserte registros a las tablas: Usuario, Propietario, Inquilino y Familiares, desde las
