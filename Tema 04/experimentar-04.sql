@@ -28,8 +28,13 @@ GO
        archivo NuevosEdificios.TXT)
 */
 
+BULK INSERT Arquitectura.EDIFICIOS
+FROM 'C:\NuevosEdificios.txt'
+WITH (FIRSTROW=1, FIELDTERMINATOR=',', ROWTERMINATOR='\n')
+GO
 
-
+SELECT * FROM Arquitectura.EDIFICIOS
+GO
 
 /*
    03. Inserte registros a la tabla Departamentos desde la Tabla TBDEPA ubicada en la
