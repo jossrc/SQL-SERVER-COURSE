@@ -62,3 +62,30 @@ GO
 SELECT DISTINCT IdCategoria
 FROM Compras.productos
 GO
+
+-- OPERADORES DE COMPARACION
+
+SELECT *
+FROM Compras.productos
+WHERE PrecioUnidad < 100
+GO
+
+SELECT *
+FROM Compras.productos
+WHERE PrecioUnidad = 20
+GO
+
+SELECT *
+FROM Compras.productos
+WHERE PrecioUnidad > 35
+GO
+
+SELECT *
+FROM Compras.productos
+WHERE IdCategoria <> 1
+GO
+
+SELECT *
+FROM Compras.productos
+WHERE IdCategoria != 1
+GO
