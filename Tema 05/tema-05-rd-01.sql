@@ -24,3 +24,14 @@ SELECT NomCliente AS [Nombre del Cliente],
 FROM Negocios.Ventas.clientes
 ORDER BY NomCliente DESC, DirCliente ASC
 GO
+
+-- PREDICADO TOP
+
+SELECT TOP 2 NomCliente
+FROM Negocios.Ventas.clientes
+GO
+
+SELECT TOP 5 *
+FROM Negocios.Compras.productos
+ORDER BY PrecioUnidad ASC
+GO
