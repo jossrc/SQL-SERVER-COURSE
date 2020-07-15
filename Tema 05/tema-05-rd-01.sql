@@ -16,3 +16,11 @@ SELECT NomCliente AS [Nombre del CLiente],
        DirCliente AS [Dirección]
   FROM Negocios.Ventas.clientes
 GO
+
+-- ORDENAR EL RESULTADO DE LA CONSULTA
+
+SELECT NomCliente AS [Nombre del Cliente],
+       DirCliente AS [Dirección]
+FROM Negocios.Ventas.clientes
+ORDER BY NomCliente DESC, DirCliente ASC
+GO
