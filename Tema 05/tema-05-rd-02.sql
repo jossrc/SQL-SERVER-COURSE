@@ -42,3 +42,13 @@ FROM Ventas.clientes AS CL
 FULL JOIN Ventas.pedidoscabe AS PC
   ON CL.IdCliente = PC.IdCliente
 GO
+
+-- CROSS JOIN
+
+SELECT PR.NomProducto,
+       PV.NomProveedor,
+	   '_____________' AS Estado
+FROM Compras.productos AS PR
+CROSS JOIN Compras.proveedores AS PV
+  ORDER BY PR.NomProducto
+GO
