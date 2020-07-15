@@ -33,3 +33,12 @@ FROM Ventas.clientes AS CL
 RIGHT JOIN Ventas.pedidoscabe AS PC
   ON CL.IdCliente = PC.IdCliente
 GO
+
+-- FULL JOIN
+
+SELECT CL.IdCliente, CL.NomCliente,
+       PC.IdPedido, PC.FechaPedido
+FROM Ventas.clientes AS CL
+FULL JOIN Ventas.pedidoscabe AS PC
+  ON CL.IdCliente = PC.IdCliente
+GO
