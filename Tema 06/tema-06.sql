@@ -5,3 +5,9 @@ GO
 
 SELECT 'HELLO WORLD'
 GO
+
+-- CONSULTANDO DATOS
+
+SELECT *
+FROM Ventas.clientes
+GO
