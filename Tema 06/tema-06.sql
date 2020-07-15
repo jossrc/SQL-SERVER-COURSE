@@ -89,3 +89,11 @@ SELECT *
 FROM Compras.productos
 WHERE IdCategoria != 1
 GO
+
+-- OPERADORES LOGICOS
+
+SELECT *
+FROM Compras.productos
+WHERE IdCategoria = 1 AND
+      PrecioUnidad <= 30
+GO
