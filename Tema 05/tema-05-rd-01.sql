@@ -35,3 +35,9 @@ SELECT TOP 5 *
 FROM Negocios.Compras.productos
 ORDER BY PrecioUnidad ASC
 GO
+
+-- PREDICADO DISTINCT
+
+SELECT DISTINCT PrecioUnidad
+FROM Negocios.Compras.productos
+GO
