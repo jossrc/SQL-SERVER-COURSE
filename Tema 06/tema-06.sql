@@ -39,3 +39,26 @@ ORDER BY IdCategoria ASC,
          IdProveedor DESC,
          NomProducto ASC
 GO
+
+-- CONSULTAS CON PREDICADO
+
+  -- ALL
+SELECT ALL *
+FROM Compras.productos
+GO
+
+  -- TOP
+SELECT TOP 3 *
+FROM Compras.productos
+ORDER BY PrecioUnidad DESC
+GO
+
+SELECT TOP 20 PERCENT *
+FROM Compras.productos
+ORDER BY PrecioUnidad ASC
+GO
+
+  -- DISTINCT
+SELECT DISTINCT IdCategoria
+FROM Compras.productos
+GO
