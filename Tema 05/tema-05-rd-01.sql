@@ -41,3 +41,11 @@ GO
 SELECT DISTINCT PrecioUnidad
 FROM Negocios.Compras.productos
 GO
+
+-- OPERADORES
+
+SELECT * 
+FROM Negocios.Ventas.clientes
+WHERE idpais IN ('001','004', '005') AND
+      NomCliente LIKE '[AEIOU]%'
+GO
