@@ -1,0 +1,7 @@
+USE Negocios
+GO
+
+-- USO DEL SELECT
+
+SELECT 'HELLO WORLD'
+GO
