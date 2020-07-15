@@ -52,3 +52,16 @@ FROM Compras.productos AS PR
 CROSS JOIN Compras.proveedores AS PV
   ORDER BY PR.NomProducto
 GO
+
+-- UNION
+
+SELECT NomCliente AS [Invitado],
+       DirCliente AS [Dirección],
+       'Cliente'  AS [Tipo]
+FROM Ventas.clientes
+  UNION
+SELECT NomProveedor AS [Invitado],
+       DirProveedor AS [Dirección],
+       'Proveedor'  AS [Tipo]
+FROM Compras.proveedores
+GO
