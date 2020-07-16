@@ -18,3 +18,9 @@ GO
     02. Consultar los 02 productos de las categorías 1,3 y 5 con mayor
         unidades en existencia .
 */
+
+SELECT TOP 2 *
+FROM Compras.productos
+WHERE IdCategoria IN (1,3,5)
+ORDER BY UnidadesEnExistencia DESC
+GO
