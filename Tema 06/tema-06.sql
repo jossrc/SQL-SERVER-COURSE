@@ -109,3 +109,15 @@ SELECT *
 FROM Compras.productos
 WHERE PrecioUnidad NOT BETWEEN 20 AND 50
 GO
+
+-- IN
+
+SELECT *
+FROM Compras.productos
+WHERE IdCategoria IN (1,3,5)
+GO
+
+SELECT *
+FROM Compras.productos
+WHERE IdCategoria NOT IN (1,3,5)
+GO
