@@ -44,3 +44,12 @@ FROM Ventas.clientes AS CL
 LEFT JOIN Ventas.pedidoscabe AS PC
   ON CL.IdCliente = PC.IdCliente
 GO
+
+-- RIGHT JOIN
+
+SELECT CL.*,
+       PC.*
+FROM Ventas.clientes AS CL
+RIGHT JOIN Ventas.pedidoscabe AS PC
+  ON CL.IdCliente = PC.IdCliente
+GO
