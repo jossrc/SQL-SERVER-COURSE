@@ -121,3 +121,20 @@ SELECT *
 FROM Compras.productos
 WHERE IdCategoria NOT IN (1,3,5)
 GO
+
+-- LIKE
+
+SELECT *
+FROM Ventas.clientes
+WHERE NomCliente LIKE 'P%'
+GO
+
+SELECT *
+FROM Ventas.clientes
+WHERE NomCliente NOT LIKE '[A-C]%'
+GO
+
+SELECT *
+FROM Ventas.clientes
+WHERE NomCliente LIKE '[^A-C]%'
+GO
