@@ -35,3 +35,12 @@ JOIN Compras.productos AS PR
 JOIN Compras.categorias AS CA
   ON PR.IdCategoria = CA.IdCategoria
 GO
+
+-- LEFT JOIN
+
+SELECT CL.*,
+       PC.*
+FROM Ventas.clientes AS CL
+LEFT JOIN Ventas.pedidoscabe AS PC
+  ON CL.IdCliente = PC.IdCliente
+GO
