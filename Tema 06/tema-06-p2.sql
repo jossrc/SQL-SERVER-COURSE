@@ -82,3 +82,29 @@ SELECT NomProveedor AS [Invitado],
        'Proveedor'  AS [Tipo]
 FROM Compras.proveedores
 GO
+
+-- CONSULTAS AGRUPADAS
+
+  -- GROUP BY
+SELECT C.NomCliente      AS [Nombre del Cliente],
+       COUNT(P.IdPedido) AS [Cantidad de Pedidos]
+FROM Ventas.clientes AS C
+JOIN Ventas.pedidoscabe AS P
+  ON C.IdCliente = P.IdCliente
+GROUP BY C.NomCliente
+GO
+
+  -- HAVING
+SELECT YEAR(P.FechaPedido) AS [AÑO],
+       E.NomEmpleado       AS [EMPLEADO],
+       C.NomCliente        AS [CLIENTE],
+       COUNT(P.IdPedido)   AS [CANTIDAD DE PEDIDOS]
+FROM Ventas.clientes AS C
+JOIN Ventas.pedidoscabe AS P
+  ON C.IdCliente = P.IdCliente
+JOIN RRHH.empleados AS E
+  ON P.IdEmpleado = E.IdEmpleado
+GROUP BY YEAR(P.FechaPedido), E.NomEmpleado, C.NomCliente
+HAVING COUNT(P.IdPedido) > 2
+ORDER BY 1,2,3
+GO
