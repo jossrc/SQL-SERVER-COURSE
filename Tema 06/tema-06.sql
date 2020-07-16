@@ -97,3 +97,15 @@ FROM Compras.productos
 WHERE IdCategoria = 1 AND
       PrecioUnidad <= 30
 GO
+
+-- BETWEEN
+
+SELECT *
+FROM Compras.productos
+WHERE PrecioUnidad BETWEEN 20 AND 50
+GO
+
+SELECT *
+FROM Compras.productos
+WHERE PrecioUnidad NOT BETWEEN 20 AND 50
+GO
