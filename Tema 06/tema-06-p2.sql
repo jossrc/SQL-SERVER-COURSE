@@ -122,3 +122,17 @@ JOIN RRHH.empleados AS E
 GROUP BY CUBE (YEAR(P.FechaPedido), E.NomEmpleado, C.NomCliente)
 ORDER BY 1,2,3
 GO
+
+  --ROLLUP
+SELECT YEAR(P.FechaPedido) AS [AÑO],
+       E.NomEmpleado       AS [EMPLEADO],
+       C.NomCliente        AS [CLIENTE],
+       COUNT(P.IdPedido)   AS [PEDIDOS]
+FROM Ventas.clientes AS C
+JOIN Ventas.pedidoscabe AS P
+  ON C.IdCliente = P.IdCliente
+JOIN RRHH.empleados AS E
+  ON E.IdEmpleado = P.IdEmpleado
+GROUP BY ROLLUP (YEAR(P.FechaPedido), E.NomEmpleado, C.NomCliente)
+ORDER BY 1,2,3
+GO
