@@ -20,3 +20,12 @@ GO
 /*
   02. Muestre los clientes que no realizaron pedido alguno.
 */
+
+SELECT C.IdCliente  AS [ID],
+       C.NomCliente AS [NOMBRE],
+       C.DirCliente AS [DIRECCIÓN]
+FROM Ventas.clientes AS C
+LEFT JOIN Ventas.pedidoscabe AS P
+  ON C.IdCliente = P.IdCliente
+WHERE P.IdPedido IS NULL
+GO
