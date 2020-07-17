@@ -1,21 +1,42 @@
 -- EXPERIMENTAR 5A
+USE VENTASCIB
+GO
 
 -- 1. Liste el código, razón social y RUC de los clientes.
 
+SELECT COD_CLI, RAZ_SOC_CLI, RUC_CLI
+FROM dbo.TB_CLIENTE
+GO
 
 -- 2. Liste el código, descripción y el stock de los productos en orden descendente por
 --    precio.
 
+SELECT COD_PRO, DES_PRO, STK_ACT
+FROM dbo.TB_PRODUCTO
+ORDER BY PRE_PRO DESC
+GO
 
 -- 3. Modifique la consulta anterior para ordenar descendente por precio y ascendente
 --    stock.
 
+SELECT COD_PRO, DES_PRO, STK_ACT
+FROM dbo.TB_PRODUCTO
+ORDER BY PRE_PRO DESC, STK_ACT ASC
+GO
 
 -- 4. Liste el código y descripción de productos por el campo LIN_PRO con valor 1 o 3.
 
+SELECT COD_PRO, DES_PRO
+FROM dbo.TB_PRODUCTO
+WHERE LIN_PRO = 1 OR LIN_PRO = 3
+GO
 
 -- 5. Modifique la consulta aplicando el operador IN.
 
+SELECT COD_PRO, DES_PRO
+FROM dbo.TB_PRODUCTO
+WHERE LIN_PRO IN (1,3)
+GO
 
 -- 6. Liste la razón social y dirección de proveedores de los distritos D02, D04, D06 o
 --    D09.
