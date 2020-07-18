@@ -128,27 +128,58 @@ PRINT 'Bienvenido a la Consola'
 
 -- 20. ¿Cómo se da formato DD/MM/YY al campo fecha de una tabla?
 
+DECLARE @DATE DATETIME
+SET @DATE = GETDATE()
+
+SELECT CONVERT(VARCHAR, @DATE, 1) AS [MM/DD/YY]
+GO
 
 -- 21. ¿Cómo se da formato DD/MM/YYYY al campo fecha de una tabla?
 
+DECLARE @DATE DATETIME
+SET @DATE = GETDATE()
+
+SELECT CONVERT(VARCHAR, @DATE, 101) AS [MM/DD/YYYY]
+GO
 
 -- 22. ¿Cómo se obtiene el día de la semana de hoy?
 
+DECLARE @DATE DATETIME
+SET @DATE = GETDATE()
+SELECT DATEPART(DW, @DATE) AS [DÍA DE LA SEMANA]
+GO
 
 -- 23. ¿Cómo se obtiene el mes de hoy?
 
+DECLARE @DATE DATETIME
+SET @DATE = GETDATE()
+SELECT DATEPART(MM, @DATE) AS [MES],
+       MONTH(@DATE) AS [OTRA FORMA]
+GO
 
 -- 24. ¿Cómo se obtiene el día de facturación?
 
+SELECT DAY(F.FEC_FAC) AS [DÍA DE FACTURACIÓN]
+FROM dbo.TB_FACTURA AS F
+GO
 
 -- 25. ¿Cómo se obtiene el día en que nací?
 
+SELECT DAY('1998-12-10') AS [DÍA EN QUE NACÍ]
+GO
 
 -- 26. ¿Cómo se obtienen los clientes registrados un lunes o viernes?
 
+SELECT *
+FROM dbo.TB_CLIENTE AS CL
+WHERE DATEPART(DW, CL.FEC_REG) IN (2,6)
+GO
 
 -- 27. ¿Cómo se obtiene el año de registro de los clientes?
 
+SELECT YEAR(CL.FEC_REG) AS [AÑO DE REGISTRO]
+FROM dbo.TB_CLIENTE AS CL
+GO
 
 -- 28. ¿Cómo se obtienen las órdenes de compra registradas entre enero y junio?
 
