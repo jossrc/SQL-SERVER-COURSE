@@ -120,17 +120,38 @@ GO
 
 -- 16. Liste la razón social de clientes indicando su antiguedad en años.
 
+SELECT CL.RAZ_SOC_CLI AS [RAZÓN SOCIAL],
+       CONCAT(CONVERT(VARCHAR ,DATEDIFF(YY,CL.FEC_REG, GETDATE())), ' Años')  AS [ANTIGUEDAD]
+FROM dbo.TB_CLIENTE AS CL
+GO
 
 -- 17. Modifique la consulta anterior para seleccionar clientes cuya antiguedad sea > a 8
 --     años.
 
+SELECT CL.RAZ_SOC_CLI AS [RAZÓN SOCIAL],
+       CONCAT(CONVERT(VARCHAR ,DATEDIFF(YY,CL.FEC_REG, GETDATE())), ' Años')  AS [ANTIGUEDAD]
+FROM dbo.TB_CLIENTE AS CL
+WHERE DATEDIFF(YY,CL.FEC_REG, GETDATE()) > 8
+GO
 
--- 18. Liste los clientes registrados en la primera quincena del último trimestre del 2005.
+-- 18. Liste los clientes registrados en la primera quincena del último trimestre del 2011.
 
+SELECT *
+FROM dbo.TB_CLIENTE AS CL
+WHERE CL.FEC_REG BETWEEN '2011-10-01' AND '2011-10-15'
+GO
 
 -- 19. Liste de manera única los códigos del vendedor que han generado ventas en el
 --     2010.
 
+SELECT F.COD_VEN
+FROM dbo.TB_FACTURA AS F
+WHERE YEAR(F.FEC_FAC) = 2010
+GO
 
 -- 20. Liste la razón social y RUC de los 2 clientes más antiguos.
 
+SELECT TOP 2 CL.RAZ_SOC_CLI, CL.RUC_CLI
+FROM dbo.TB_CLIENTE AS CL
+ORDER BY CL.FEC_REG ASC
+GO
