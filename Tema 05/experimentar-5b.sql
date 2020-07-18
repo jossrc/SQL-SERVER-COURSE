@@ -183,17 +183,36 @@ GO
 
 -- 28. ¿Cómo se obtienen las órdenes de compra registradas entre enero y junio?
 
+SELECT *
+FROM dbo.TB_ORDEN_COMPRA AS OC
+WHERE MONTH(OC.FEC_OCO) IN (1,6)
+GO
 
 -- 29. ¿Cómo se obtiene el número del día de una fecha?
 
+SELECT DATEPART(DD, GETDATE()) AS [DÍA]
+GO
 
--- 30. ¿Cómo se obtienen las facturas emitidas un sábado del primer semestre del 2010?
+-- 30. ¿Cómo se obtienen las facturas emitidas un sábado del primer semestre del 2013?
 
+SELECT *
+FROM dbo.TB_FACTURA AS F
+WHERE DATEPART(DW, F.FEC_FAC) = 7 AND 
+      (F.FEC_FAC BETWEEN '2013-01-01' AND '2013-06-30')
+GO
 
 -- 31. ¿Cómo se obtiene el día si le adiciono 25 días a la fecha actual?
 
+SELECT DAY(DATEADD(DD,25, GETDATE())) AS [DÍA]
+GO
 
 -- 32. ¿Cómo se determina la cantidad de días transcurridos para la cancelación de una
 --     factura?
 
+SELECT *
+FROM dbo.TB_FACTURA
+GO
 
+SELECT ABS(DATEDIFF(DD, FEC_CAN, FEC_FAC)) AS [DÍAS TRANSCURRIDOS]
+FROM dbo.TB_FACTURA
+GO
