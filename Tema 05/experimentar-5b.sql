@@ -1,19 +1,47 @@
 -- EXPERIMENTAR 5B
 
+USE VENTASCIB
+GO
+
 -- 1. ¿Cómo se halla la longitud de una cadena en un campo de una tabla?
 
+PRINT LEN('HOLA') -- 4
+
+SELECT CL.RAZ_SOC_CLI AS [RAZÓN SOCIAL],
+       LEN(CL.RAZ_SOC_CLI) AS [LONGITUD]
+FROM dbo.TB_CLIENTE AS CL
+GO
 
 -- 2. ¿Cómo se hallan los nombres de los vendedores con más de 4 letras?
 
+SELECT V.NOM_VEN AS [VENDEDOR]
+FROM dbo.TB_VENDEDOR AS V
+WHERE LEN(V.NOM_VEN) > 4
+GO
 
 -- 3. ¿Cómo se hallan los vendedores cuyos apellidos finaliza en O, N o S?
 
+SELECT *
+FROM dbo.TB_VENDEDOR AS V
+WHERE V.APE_VEN LIKE '%[ONS]'
+GO
 
 -- 4. ¿Cómo se lista el primer carácter del nombre y apellido de los vendedores?
 
+PRINT SUBSTRING('HOLA', 1,1)
+GO
+
+SELECT SUBSTRING(V.NOM_VEN, 1, 1) AS [NOMBRE PRIMER CARACTER],
+       SUBSTRING(V.APE_VEN, 1, 1) AS [APELLIDO PRIMER CARACTER]
+FROM dbo.TB_VENDEDOR AS V
+GO
 
 -- 5. ¿Cómo se listan los productos, donde el tercer y cuarto carácter sea "PE"?
 
+SELECT *
+FROM dbo.TB_PRODUCTO AS P
+WHERE P.DES_PRO LIKE '__PE%'
+GO
 
 -- 6. ¿Cómo se listan los clientes donde el cuarto y quinto carácter sea "02"?
 
