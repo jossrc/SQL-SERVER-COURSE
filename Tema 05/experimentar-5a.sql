@@ -83,20 +83,40 @@ GO
 
 -- 11. Liste razón social y dirección de proveedores con teléfono de la serie 445.
 
+SELECT P.RAZ_SOC_PRV, P.DIR_PRV
+FROM dbo.TB_PROVEEDOR AS P
+WHERE P.TEL_PRV LIKE '445%'
+GO
 
 -- 12. Liste los productos donde segunda letra de descripción tenga una "A" o una "O".
 
+SELECT *
+FROM dbo.TB_PRODUCTO AS PR
+WHERE PR.DES_PRO LIKE '_[A-O]%'
+GO
 
 -- 13. Modifique la consulta anterior para obtener los productos cuya descripción tenga
 --    "AP".
 
+SELECT *
+FROM dbo.TB_PRODUCTO AS PR
+WHERE PR.DES_PRO LIKE '%AP%'
+GO
 
 -- 14. Liste las facturas cuya fecha de cancelación aun no se haya definido.
 
+SELECT *
+FROM dbo.TB_FACTURA AS F
+WHERE F.FEC_CAN IS NULL
+GO
 
 -- 15. Liste los números de factura, fecha de facturación y estado de facturas emitidas en
 --     el 2010.
 
+SELECT F.NUM_FAC, F.FEC_FAC, F.EST_FAC
+FROM dbo.TB_FACTURA AS F
+WHERE YEAR(F.FEC_FAC) = 2010
+GO
 
 -- 16. Liste la razón social de clientes indicando su antiguedad en años.
 
