@@ -3,18 +3,45 @@ GO
 
 -- 1. Liste la sumatoria de precios de los productos.
 
+SELECT SUM(P.PRE_PRO) AS [SUMA TOTAL]
+FROM dbo.TB_PRODUCTO AS P
+GO
 
 -- 2. Liste el máximo y mínimo valor del sueldo de vendedores de tipo “1”.
 
+SELECT *
+FROM TB_VENDEDOR
+WHERE TIP_VEN = 1
+GO
+
+SELECT MAX(V.SUELDO_VEN) AS [MÁXIMO SUELDO],
+       MIN(V.SUELDO_VEN) AS [MÍNIMO SUELDO]
+FROM dbo.TB_VENDEDOR AS [V]
+WHERE V.TIP_VEN = 1
+GO
 
 -- 3. Liste el promedio de antigüedad de los clientes.
 
+SELECT AVG(DATEDIFF(YY, CL.FEC_REG, GETDATE())) AS [PROMEDIO DE ANTIGUEDAD DE LOS CLIENTES]
+FROM dbo.TB_CLIENTE AS [CL]
+GO
 
 -- 4. Liste la cantidad de facturas pendientes.
 
+SELECT COUNT(CL.COD_CLI) AS [FACTURAS PENDIENTES]
+FROM dbo.TB_FACTURA AS [F]
+FULL JOIN dbo.TB_CLIENTE AS [CL]
+  ON F.COD_CLI = CL.COD_CLI
+WHERE F.NUM_FAC IS NULL
+GO
 
 -- 5. Liste la cantidad de facturas generados por cliente.
 
+SELECT F.COD_CLI AS [CODIGO DEL CLIENTE],
+       COUNT(F.NUM_FAC) AS [CANTIDAD DE FACTURAS]
+FROM dbo.TB_FACTURA AS [F]
+GROUP BY F.COD_CLI
+GO
 
 -- 6. Liste, en base al ejercicio anterior, los clientes con más de una factura.
 
