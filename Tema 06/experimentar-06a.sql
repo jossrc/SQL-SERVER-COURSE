@@ -45,18 +45,47 @@ GO
 
 -- 6. Liste, en base al ejercicio anterior, los clientes con más de una factura.
 
+SELECT F.COD_CLI AS [CODIGO DEL CLIENTE],
+       COUNT(F.NUM_FAC) AS [CANTIDAD DE FACTURAS]
+FROM dbo.TB_FACTURA AS [F]
+GROUP BY F.COD_CLI
+HAVING COUNT(F.NUM_FAC) > 1
+GO
 
--- 7. Liste en base al ejercicio anterior las facturas del año 2010.
+-- 7. Liste en base al ejercicio anterior las facturas del año 2013.
 
+SELECT F.COD_CLI AS [CODIGO DEL CLIENTE],
+       COUNT(F.NUM_FAC) AS [CANTIDAD DE FACTURAS]
+FROM dbo.TB_FACTURA AS [F]
+WHERE YEAR(F.FEC_FAC) = 2013
+GROUP BY F.COD_CLI
+HAVING COUNT(F.NUM_FAC) > 1
+GO
 
 -- 8. Liste los códigos de proveedores que abastecen más de 2 productos.
 
+SELECT A.COD_PRV AS [CODIGO DEL PROVEEDOR],
+       COUNT(A.COD_PRO) AS [CANTIDAD DE PRODUCTOS]
+FROM dbo.TB_ABASTECIMIENTO AS [A]
+GROUP BY A.COD_PRV
+HAVING COUNT(A.COD_PRO) > 2
+GO
 
 -- 9. Liste el promedio de tiempo de servicio y sueldos por cada tipo de vendedor.
 
+SELECT V.TIP_VEN AS [TIPO VENDEDOR],
+       CONCAT(CONVERT(varchar, AVG(DATEDIFF(YY, V.FEC_ING, GETDATE()))), ' años') AS [TIEMPO PROMEDIO],
+       AVG(V.SUELDO_VEN) AS [SUELDO PROMEDIO]
+FROM dbo.TB_VENDEDOR AS [V]
+GROUP BY V.TIP_VEN
+GO
 
 -- 10. Liste la cantidad de facturas que han tardado más de 5 días en cancelarse.
 
+SELECT COUNT(F.NUM_FAC) AS [CANTIDAD DE FACTURAS]
+FROM dbo.TB_FACTURA AS [F]
+WHERE DATEDIFF(DD, F.FEC_FAC, F.FEC_CAN) > 5
+GO
 
 -- 11. Liste la razón social y ruc de clientes con una antigüedad mayor a la antigüedad
 --     promedio.
