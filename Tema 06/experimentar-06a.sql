@@ -146,11 +146,12 @@ WHERE DF.NUM_FAC = 'FA002'
 GROUP BY DF.NUM_FAC, P.DES_PRO
 GO
 
-SELECT *
-FROM dbo.TB_DETALLE_FACTURA
-
 -- 15. Liste la descripción y precio de los productos cuyo precio supera el precio
 --     promedio.
 
-
-
+SELECT P.DES_PRO AS [PRODUCTO],
+       P.PRE_PRO AS [PRECIO]
+FROM dbo.TB_PRODUCTO AS P, dbo.TB_PRODUCTO AS PR
+GROUP BY P.DES_PRO, P.PRE_PRO
+HAVING AVG(PR.PRE_PRO) < P.PRE_PRO
+GO
