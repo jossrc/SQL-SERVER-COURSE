@@ -90,15 +90,64 @@ GO
 -- 11. Liste la razón social y ruc de clientes con una antigüedad mayor a la antigüedad
 --     promedio.
 
+SELECT *
+FROM dbo.TB_CLIENTE
+
+SELECT AVG(DATEDIFF(YY, CL.FEC_REG, GETDATE())) AS [PROMEDIO DE ANTIGUEDAD DE LOS CLIENTES]
+FROM dbo.TB_CLIENTE AS [CL]
+GO
+
+SELECT CL.RAZ_SOC_CLI AS [RAZÓN SOCIAL],
+       CL.RUC_CLI     AS [RUC],
+       DATEDIFF(YY, CL.FEC_REG, GETDATE()) AS [ANTIGUEDAD]
+FROM dbo.TB_CLIENTE AS CL, dbo.TB_CLIENTE AS C
+GROUP BY CL.RAZ_SOC_CLI, CL.RUC_CLI, DATEDIFF(YY, CL.FEC_REG, GETDATE())
+HAVING AVG(DATEDIFF(YY,C.FEC_REG, GETDATE())) < DATEDIFF(YY, CL.FEC_REG, GETDATE())
+GO
 
 -- 12. Liste los nombres y apellidos de vendedores que no ha generado facturas.
 
+SELECT *
+FROM dbo.TB_VENDEDOR
+GO
+
+SELECT *
+FROM dbo.TB_FACTURA
+GO
+
+SELECT V.NOM_VEN AS [NOMBRE],
+       V.APE_VEN AS [APELLIDO]
+FROM dbo.TB_FACTURA AS F
+FULL JOIN dbo.TB_VENDEDOR AS V
+  ON F.COD_VEN = V.COD_VEN
+WHERE F.NUM_FAC IS NULL
+GO
 
 -- 13. Liste la cantidad de facturas generadas por los vendedores del distrito D09.
 
+SELECT COUNT(F.NUM_FAC) AS [CANTIDAD DE FACTURAS]
+FROM dbo.TB_DISTRITO AS D
+JOIN dbo.TB_VENDEDOR AS V
+  ON D.COD_DIS = V.COD_DIS
+JOIN dbo.TB_FACTURA AS F
+  ON V.COD_VEN = F.COD_VEN
+WHERE V.COD_DIS = 'D09'
+GROUP BY D.COD_DIS
+GO
 
 -- 14. Liste los productos comercializados en la factura FA002.
 
+SELECT DF.NUM_FAC AS [FACTURA],
+       P.DES_PRO AS [PRODUCTOS]
+FROM dbo.TB_PRODUCTO AS P
+JOIN dbo.TB_DETALLE_FACTURA AS DF
+  ON P.COD_PRO = DF.COD_PRO
+WHERE DF.NUM_FAC = 'FA002'
+GROUP BY DF.NUM_FAC, P.DES_PRO
+GO
+
+SELECT *
+FROM dbo.TB_DETALLE_FACTURA
 
 -- 15. Liste la descripción y precio de los productos cuyo precio supera el precio
 --     promedio.
