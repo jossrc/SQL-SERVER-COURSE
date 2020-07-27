@@ -56,3 +56,68 @@ ELSE IF @cantidad = 1
 ELSE
   PRINT 'Ha registrado muchos pedidos'
 GO
+
+-- ESTRUCTURA DE CONTROL "CASE"
+
+  -- Evaluando valores
+BEGIN
+  DECLARE @v_numMessage TINYINT = 1
+  DECLARE @v_txtMessage VARCHAR(MAX) -- Máxima longitud permitida por SQL
+    SET @v_txtMessage = 
+      CASE @v_numMessage
+        WHEN 1 THEN 'Hello World'
+        WHEN 2 THEN 'Vas a lograrlo'
+        WHEN 3 THEN 'Eres un Campeón'
+        ELSE 'Mensaje no implementado'
+      END
+  PRINT @v_txtMessage
+END
+GO
+
+  -- Evaluando resultado de una expresión de comparación
+BEGIN
+  SET DATEFORMAT DMY
+  DECLARE @v_fna DATE = '10/04/90'
+  DECLARE @v_edad SMALLINT
+  DECLARE @v_etapaGeneracional VARCHAR(50)
+    SET @v_edad = DATEDIFF(YY, @v_fna, GETDATE())
+    SET @v_etapaGeneracional =
+      CASE
+        WHEN @v_edad < 1   THEN 'Bebé'
+        WHEN @v_edad <= 5  THEN 'Infante'
+        WHEN @v_edad <= 12 THEN 'Niño'
+        WHEN @v_edad <= 14 THEN 'Puber'
+        WHEN @v_edad < 18  THEN 'Adolescente'
+        WHEN @v_edad < 30  THEN 'Joven'
+        WHEN @v_edad < 65  THEN 'Adulto'
+        ELSE 'Adulto Mayor'
+      END
+  PRINT 'La etapa generacional es: ' + @v_etapaGeneracional
+END
+GO
+
+  -- Utilizando CASE dentro de un SELECT
+SELECT P.IdPedido,
+       P.FechaPedido,
+       P.Destinatario,
+       CASE P.EnvioPedido
+         WHEN 0 THEN 'Envío Pendiente'
+         WHEN 1 THEN 'Ya Enviado'
+       END AS [Estado del Envío]
+FROM Ventas.pedidoscabe AS P
+GO
+
+DECLARE @stock INT
+SET @stock = 100
+SELECT NomProducto,
+       PrecioUnidad,
+       UnidadesEnExistencia,
+       'Estado' = (
+          CASE
+            WHEN UnidadesEnExistencia > @stock THEN 'Stockeado'
+            WHEN UnidadesEnExistencia = @stock THEN 'Limite'
+            WHEN UnidadesEnExistencia < @stock THEN 'Haga una solicitud'
+          END
+       )
+FROM Compras.productos
+GO
