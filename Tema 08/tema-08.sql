@@ -121,3 +121,36 @@ SELECT NomProducto,
        )
 FROM Compras.productos
 GO
+
+-- ESTRUCTURA DE CONTROL "WHILE"
+
+  -- Ejemplo 01
+BEGIN
+  SET DATEFORMAT DMY
+  DECLARE @v_fechaInicial DATE = '01/01/95'
+  DECLARE @v_fechaFinal DATE = '31/12/00'
+  WHILE @v_fechaInicial <= @v_fechaFinal
+    BEGIN
+      PRINT @v_fechaInicial
+      SET @v_fechaInicial = DATEADD(DD, 1, @v_fechaInicial)
+    END
+END
+GO
+
+  -- Ejemplo 02
+BEGIN
+  SET DATEFORMAT DMY
+  DECLARE @v_fechaInicial DATE = '01/01/90'
+  DECLARE @v_fechaFinal DATE = '31/12/00'
+  DECLARE @v_Flag BIT = 1
+  WHILE @v_Flag = 1
+    BEGIN
+      PRINT @v_fechaInicial
+      SET @v_fechaInicial = DATEADD(DD, 1, @v_fechaInicial)
+      IF @v_fechaInicial > @v_fechaFinal
+        BREAK -- Termina
+      ELSE
+        CONTINUE -- Salta
+    END
+END
+GO
