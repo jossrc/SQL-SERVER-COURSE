@@ -154,3 +154,32 @@ BEGIN
     END
 END
 GO
+
+-- CONTROL DE ERRORES
+
+  -- Error
+DELETE FROM Ventas.clientes
+WHERE IdCliente = 'ALFKI'
+GO
+  
+  -- Manejando excepción de errores
+BEGIN TRY
+  DELETE FROM Ventas.clientes
+  WHERE IdCliente = 'ALFKI'
+END TRY
+BEGIN CATCH
+  PRINT 'Error excepcionado'
+END CATCH
+GO
+
+  -- Manejando excepción de errores usando "@@Error"
+
+BEGIN TRY
+  DELETE FROM Ventas.clientes
+  WHERE IdCliente = 'ALFKI'
+END TRY
+BEGIN CATCH
+  IF @@error = 547
+    PRINT 'No se puede eliminar por integridad referencial'
+END CATCH
+GO
