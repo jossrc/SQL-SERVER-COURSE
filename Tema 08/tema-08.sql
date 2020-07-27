@@ -220,3 +220,31 @@ BEGIN CATCH
   PRINT 'Error Controlado con Catch'
 END CATCH
 GO
+
+-- TRANSACCIONES
+
+/* 
+  01. Transacción que permite ingresar una nueva categoría.
+      La transacción se confirma si el nombre no se repite
+      de lo contrario, se cancela
+*/
+DECLARE @v_IdCat SMALLINT = 2599
+DECLARE @v_NomCat VARCHAR(50) = 'Esp'
+DECLARE @v_table TABLE (
+  NOMCAT VARCHAR(15)
+)
+
+INSERT @v_table SELECT NombreCategoria
+FROM Compras.categorias
+
+BEGIN TRAN T1 -- Inicio de la transacción
+  INSERT INTO Compras.categorias
+  VALUES (@v_IdCat, @v_NomCat, NULL)
+
+  IF @v_NomCat NOT IN (
+    SELECT * FROM @v_table
+  )
+    COMMIT TRAN T1 -- Confirmar transacción
+  ELSE
+    ROLLBACK TRAN T1 -- Reversión de la transacción
+GO
