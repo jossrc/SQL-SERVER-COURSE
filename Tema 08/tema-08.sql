@@ -183,7 +183,8 @@ BEGIN CATCH
 END CATCH
 GO
 
-/* 
+/*
+
   Funciones especiales de errores :
   * ERROR_NUMBER()    -- Devuelve el número de error
   * ERROR_SEVERITY()  -- Devuelve la severidad del error
@@ -191,4 +192,31 @@ GO
   * ERROR_PROCEDURE() -- Devuelve el nombre del SP que provoca el error
   * ERROR_LINE()      -- Devuelve el número de linea donde se encuentra el error
   * ERROR_MESSAGE()   -- Devuelve el mensaje de error
+  
 */
+
+-- RAISERROR
+
+  -- Personalizando mensajes, con severidad Leve (10)
+DECLARE @v_CantidadPedida SMALLINT = 100
+IF @v_CantidadPedida >= 100
+  RAISERROR('Cantidad Excedida', 10, 1)
+GO
+
+  -- Personalizando mensajes con severidad Grave (16)
+DECLARE @v_CantidadPedida SMALLINT = 100
+IF @v_CantidadPedida >= 100
+  RAISERROR('Cantidad Excedida', 16, 1)
+GO
+
+  -- Personalizando mensajes con severidad 16 controlando con Try Catch
+DECLARE @v_CantidadPedida SMALLINT = 100
+BEGIN TRY
+  IF @v_CantidadPedida >= 100
+    RAISERROR('Cantidad Excedida', 16, 1)
+END TRY
+BEGIN CATCH
+  PRINT ERROR_MESSAGE()
+  PRINT 'Error Controlado con Catch'
+END CATCH
+GO
