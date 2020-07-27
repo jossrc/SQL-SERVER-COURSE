@@ -173,7 +173,6 @@ END CATCH
 GO
 
   -- Manejando excepción de errores usando "@@Error"
-
 BEGIN TRY
   DELETE FROM Ventas.clientes
   WHERE IdCliente = 'ALFKI'
@@ -183,3 +182,13 @@ BEGIN CATCH
     PRINT 'No se puede eliminar por integridad referencial'
 END CATCH
 GO
+
+/* 
+  Funciones especiales de errores :
+  * ERROR_NUMBER()    -- Devuelve el número de error
+  * ERROR_SEVERITY()  -- Devuelve la severidad del error
+  * ERROR_STATE()     -- Devuelve el estado del error
+  * ERROR_PROCEDURE() -- Devuelve el nombre del SP que provoca el error
+  * ERROR_LINE()      -- Devuelve el número de linea donde se encuentra el error
+  * ERROR_MESSAGE()   -- Devuelve el mensaje de error
+*/
