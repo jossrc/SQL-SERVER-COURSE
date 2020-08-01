@@ -48,3 +48,43 @@ CLOSE nuevo_cursor
 -- 07. Liberar
 DEALLOCATE nuevo_cursor
 GO
+
+-- EJEMPLO 03
+-- CURSORES ANIDADOS
+DECLARE @vc_Idcli CHAR(5),
+        @vc_NomCli VARCHAR(50),
+        @vc_DirCli VARCHAR(50)
+DECLARE cursor2 CURSOR FOR
+  SELECT IdCliente, NomCliente, DirCliente
+  FROM Ventas.clientes
+OPEN cursor2
+FETCH cursor2 INTO @vc_Idcli, @vc_NomCli, @vc_DirCli
+  PRINT SPACE(25) + 'REPORTE DE CLIENTES'
+  PRINT SPACE(25) + REPLICATE('*', 25)
+WHILE @@FETCH_STATUS = 0
+  BEGIN
+    PRINT 'Nombre del Cliente: ' + @vc_Idcli
+    PRINT 'Dirección Cliente : '  + @vc_DirCli
+    PRINT ''
+    DECLARE cursorAnil CURSOR FOR
+      SELECT IdPedido, FechaPedido 
+      FROM Ventas.pedidoscabe
+    WHERE IdCliente = @vc_Idcli
+    DECLARE @vc_IdPed INT, @vc_FecPed DATE
+    OPEN cursorAnil
+    FETCH cursorAnil INTO @vc_IdPed, @vc_FecPed
+    WHILE @@FETCH_STATUS = 0
+      BEGIN
+        PRINT SPACE(20) + LTRIM(@vc_IdPed) + SPACE(20) + CONVERT(VARCHAR(16), @vc_FecPed, 6)
+        PRINT SPACE(20) + REPLICATE('-', 25)
+        FETCH cursorAnil INTO @vc_IdPed, @vc_FecPed
+      END
+    CLOSE cursorAnil
+    DEALLOCATE cursorAnil
+    FETCH cursor2 INTO @vc_Idcli, @vc_NomCli, @vc_DirCli
+  END
+PRINT REPLICATE('*', 50)
+CLOSE cursor2
+DEALLOCATE cursor2
+GO
+
