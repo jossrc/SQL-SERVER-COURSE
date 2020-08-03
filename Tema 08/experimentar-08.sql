@@ -85,12 +85,54 @@ GO
      + Si se canceló en más de 10 días no se aplica descuento.
 */
 
+SELECT F.NUM_FAC AS [FACTURA],
+       'DESCUENTO' = (
+         CASE
+           WHEN ABS(DATEDIFF(DD,F.FEC_FAC, F.FEC_CAN)) <= 10 AND
+                SUM(DF.CAN_VEN * DF.PRE_VEN) < 120
+             THEN 'S/' + STR(0.1 * SUM(DF.CAN_VEN * DF.PRE_VEN))
+           WHEN ABS(DATEDIFF(DD,F.FEC_FAC, F.FEC_CAN)) <= 10 AND
+                SUM(DF.CAN_VEN * DF.PRE_VEN) > 120
+             THEN 'S/' + STR(0.12 * SUM(DF.CAN_VEN * DF.PRE_VEN))
+           WHEN ABS(DATEDIFF(DD,F.FEC_FAC, F.FEC_CAN)) > 10
+             THEN 'NO APLICA DESCUENTO'
+         END       
+       )
+FROM dbo.TB_FACTURA AS [F]
+INNER JOIN dbo.TB_DETALLE_FACTURA AS [DF]
+  ON F.NUM_FAC = DF.NUM_FAC
+GROUP BY F.NUM_FAC, DATEDIFF(DD,F.FEC_FAC, F.FEC_CAN)
+GO
+
 -- 7. Muestre la relación de facturas y una observación literal (dependiendo del valor del
 --    campo EST_FAC: 1: Pendiente, 2: Cancelada y 3: Anulada). Utilice CASE.
 
+SELECT F.NUM_FAC AS [FACTURA],
+       F.EST_FAC AS [ESTADO],
+       'OBSERVACIÓN' = (
+         CASE
+           WHEN F.EST_FAC = 1 THEN 'PENDIENTE'
+           WHEN F.EST_FAC = 2 THEN 'CANCELADA'
+           WHEN F.EST_FAC = 3 THEN 'ANULADA'
+         END
+       )
+FROM TB_FACTURA AS [F]
+GO
 
 -- 8. Muestre el código de cliente y una condición (Deudor o Sin Deudas) dependiendo si
 --    tiene o no, facturas pendientes. Utilice CASE
+
+SELECT CL.COD_CLI AS [CÓDIGO],
+       'CONDICIÓN' = (
+         CASE
+           WHEN F.EST_FAC = 1 THEN 'DEUDOR'
+           ELSE 'SIN DEUDAS'
+         END
+       )
+FROM TB_CLIENTE AS [CL]
+JOIN TB_FACTURA AS [F]
+  ON CL.COD_CLI = F.COD_CLI
+GO
 
 /*
    9. Muestre la descripción de productos y una observación, ésta dependerá de la
@@ -102,7 +144,32 @@ GO
       + En caso contrario, la observación indicará 'Producto con stock suficiente'
 */
 
+SELECT P.DES_PRO AS [PRODUCTO],
+       'OBSERVACIÓN' = (
+         CASE
+           WHEN P.STK_ACT < P.STK_MIN
+             THEN 'ABASTECERSE URGENTE'
+           WHEN (P.STK_ACT - P.STK_MIN) BETWEEN 1 AND 500
+             THEN 'TOME SUS PRECAUCIONES'
+           ELSE 'PRODUCTO CON STOCK SUFICIENTE'
+         END
+       )
+FROM TB_PRODUCTO AS [P]
+GO
+
 -- 10. Declare e Imprima la sumatoria de los números del 1 al 100.
+
+DECLARE @counter INT,
+        @sum INT
+SET @counter = 0
+SET @sum = 0
+WHILE @counter <= 100
+  BEGIN
+    SET @sum += @counter
+    SET @counter += 1
+  END
+PRINT 'SUMA DEL 1 AL 100 : ' + STR(@sum)
+GO
 
 /*
    11. Declare variables (precio promedio, nuevo precio, código de producto), luego realice
