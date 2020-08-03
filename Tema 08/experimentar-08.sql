@@ -180,9 +180,56 @@ GO
       + Caso contrario, deshacer la transacción.
 */
 
+SELECT * FROM TB_PRODUCTO
+GO
+
+DECLARE @avgPrice MONEY,
+        @newPrice MONEY,
+        @codProd  CHAR(5)
+SET @newPrice = 12
+BEGIN TRAN TR01
+  SELECT @avgPrice = AVG(P.PRE_PRO)
+  FROM TB_PRODUCTO AS P
+  WHERE P.IMPORTADO = 'V'
+
+  PRINT 'PRECIO PROMEDIO : ' + STR(@avgPrice)
+
+  UPDATE TB_PRODUCTO
+  SET PRE_PRO = @newPrice
+  WHERE COD_PRO = 'P001'
+
+  IF @newPrice < @avgPrice
+    COMMIT TRAN TR01
+  ELSE
+    ROLLBACK TRAN TR01
+GO
+
 -- 12. Modifique el ejercicio anterior para generar un mensaje de error “Transacción
 --     Anulada”, de severidad leve cuando la transacción no se confirme.
 
+DECLARE @avgPrice MONEY,
+        @newPrice MONEY,
+        @codProd  CHAR(5)
+SET @newPrice = 36
+BEGIN TRAN TR01
+  SELECT @avgPrice = AVG(P.PRE_PRO)
+  FROM TB_PRODUCTO AS P
+  WHERE P.IMPORTADO = 'V'
+
+  PRINT 'PRECIO PROMEDIO : ' + STR(@avgPrice)
+
+  UPDATE TB_PRODUCTO
+  SET PRE_PRO = @newPrice
+  WHERE COD_PRO = 'P001'
+
+  IF @newPrice < @avgPrice
+    COMMIT TRAN TR01
+  ELSE
+    BEGIN
+      RAISERROR('Transacción Anulada', 10, 1)
+      ROLLBACK TRAN TR01
+    END
+GO
 
 -- 13. Declare variables (similares a campos de la tabla orden de compra), asigne valores,
 --     luego inserte el registro. Deberá controlar el error mostrando el mensaje respectivo
