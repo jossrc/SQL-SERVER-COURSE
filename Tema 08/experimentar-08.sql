@@ -236,6 +236,48 @@ GO
 --     según el error producido (por ejemplo, llaves duplicadas, llaves foráneas
 --     inexistentes, datos incompatibles, etc.).
 
+BEGIN TRY
+  DECLARE @num_oco CHAR(5) = 'OC022',
+          @fec_oco DATE = GETDATE(),
+          @cod_prv CHAR(5) = 'PAR1',
+          @fec_ate DATE = GETDATE(),
+          @est_oco CHAR(1) = 1
+  BEGIN TRANSACTION TR02
+    DECLARE @v_tabOrdenCompra TABLE (
+      numOrdenCompra CHAR(5),
+      codProve CHAR(5)
+    )
+  
+    INSERT INTO @v_tabOrdenCompra
+    SELECT NUM_OCO, COD_PRV FROM TB_ORDEN_COMPRA
+  
+    INSERT INTO TB_ORDEN_COMPRA VALUES
+      (@num_oco, @fec_oco, @cod_prv, @fec_ate, @est_oco)
+    
+    IF NOT EXISTS (
+      SELECT * FROM @v_tabOrdenCompra
+      WHERE numOrdenCompra = @num_oco 
+    ) AND @cod_prv IN ( SELECT COD_PRV FROM TB_PROVEEDOR)
+      COMMIT TRANSACTION TR02
+    ELSE
+      RAISERROR ('Sucedió un error al momento de Ingresar un nueva orden de compra', 16, 1)
+END TRY
+BEGIN CATCH
+  IF ERROR_NUMBER() = 2627
+    PRINT 'ERROR - Numero de Orden Repetido'
+  ELSE IF ERROR_NUMBER() = 547
+    PRINT 'ERROR - Proveedor no existe'
+  ELSE
+    BEGIN
+      PRINT STR(ERROR_NUMBER())
+      PRINT ERROR_MESSAGE()
+      ROLLBACK TRANSACTION TR02
+    END
+END CATCH
+GO
+
+SELECT * FROM TB_ORDEN_COMPRA
+GO
 
 /*
    14. Declare variables (similares a campos de la tabla factura), asigne valores e inserte
@@ -250,3 +292,53 @@ GO
        deshaciendo la transacción.
 */
 
+SELECT * FROM TB_FACTURA
+GO
+
+BEGIN TRY
+  DECLARE @num_fac VARCHAR(12) = 'FA023',
+          @fec_fac DATE = '2020-01-01',
+          @cod_cli CHAR(5) = 'C020',
+          @fec_can DATE = '2020-01-01',
+          @est_fac VARCHAR(10) = '1',
+          @cod_ven CHAR(3) = 'V02',
+          @porc_igv DECIMAL(18,0) = 0
+  BEGIN TRANSACTION TR03
+   DECLARE @tb_fac TABLE(
+     num_fac VARCHAR(12),
+     cod_cli CHAR(5),
+     cod_ven CHAR(3)
+   )
+
+   INSERT INTO @tb_fac
+   SELECT NUM_FAC, COD_CLI, COD_VEN FROM TB_FACTURA
+
+   INSERT INTO TB_FACTURA VALUES
+     (@num_fac, @fec_fac, @cod_cli, @fec_can, @est_fac, @cod_ven, @porc_igv)
+
+   IF NOT EXISTS(
+     SELECT * FROM TB_FACTURA
+     WHERE NUM_FAC = @num_fac
+   ) AND @cod_cli IN (SELECT COD_CLI FROM TB_CLIENTE) AND
+     @cod_ven IN (SELECT COD_VEN FROM TB_VENDEDOR)    AND
+     @fec_can > @fec_fac AND
+     DATEDIFF(DD, @fec_fac, @fec_can) < 15
+      COMMIT TRANSACTION TR03
+   ELSE
+      RAISERROR ('Oops sucedió un error', 16, 1)
+END TRY
+BEGIN CATCH
+  IF ERROR_NUMBER() = 2627
+    PRINT 'NUMERO DE FACTURA YA EXISTENTE'
+  ELSE IF ERROR_NUMBER() = 547
+    PRINT 'ERROR CODIGO DEL CLIENTE O VENDEDOR NO EXISTE'
+  ELSE IF ERROR_NUMBER() = 50000
+    PRINT 'DEBE CUMPLIR LA CONDICIÓN DE FECHAS'
+  ELSE
+    BEGIN
+      PRINT STR(ERROR_NUMBER())
+      PRINT ERROR_MESSAGE()
+    END
+  ROLLBACK TRANSACTION TR03
+END CATCH
+GO
